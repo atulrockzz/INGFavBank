@@ -21,5 +21,16 @@ git 'https://github.com/atulrockzz/INGFavBank.git'
    steps{
              sh 'export JENKINS_NODE_COOKIE=dontKillMe ;nohup java -Dspring.profiles.active=sit -jar $WORKSPACE/target/*.jar &'
          }}
+         stage{
+         steps{
+         CURL_RESPONSE=$(curl -v -u admin:adminh -T $WAR_PATH "http://18.221.45.191:8888/manager/text/deploy?path=/$CONTEX_NAME&update=true")    
+
+if [[ $CURL_RESPONSE == *"FAIL"* ]]; then
+  echo "war deployment failed"
+  exit 1
+else    
+  echo "war deployed successfully "
+  exit 0
+fi  }}
 }
 }
