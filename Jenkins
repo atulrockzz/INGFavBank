@@ -10,8 +10,9 @@ git 'https://github.com/atulrockzz/INGFavBank.git'
              sh '/opt/maven/bin/mvn clean verify sonar:sonar -Dsonar.password=admin -Dsonar.login=admin'
          } }
    stage("build & SonarQube analysis") {
+   steps{
               withSonarQubeEnv('sonar') {
-              steps{
+              
                  sh '/opt/maven/bin/mvn clean deploy sonar:sonar'
               } }
           }
