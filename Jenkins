@@ -1,8 +1,21 @@
 pipeline{
 agent any 
 stages{
-stage('Build'){
+stage('Git Checkout'){
 steps{
+git 'https://github.com/atulrockzz/INGFavBank.git'
+     }                }
+   stage('java build'){
+             sh '/opt/maven/bin/mvn clean verify sonar:sonar -Dsonar.password=admin -Dsonar.login=admin'
+         }
+   stage("build & SonarQube analysis") {
+              withSonarQubeEnv('sonar') {
+                 sh '/opt/maven/bin/mvn clean deploy sonar:sonar'
+              }
+          }
+      
+   stage('Running java backend application'){
+             sh 'export JENKINS_NODE_COOKIE=dontKillMe ;nohup java -Dspring.profiles.active=sit -jar $WORKSPACE/target/*.jar &'
+         }
 }
-           } 
-}}
+}
