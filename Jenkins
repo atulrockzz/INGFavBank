@@ -23,7 +23,7 @@ git 'https://github.com/atulrockzz/INGFavBank.git'
          }}
          stage('Tomcat Deploy'){
          steps{
-         deploy adapters: [tomcat9(credentialsId: 'Tomcat', path: '', url: 'http://18.221.45.191:8888')], contextPath: 'Favbank', war: '**/*.war'
+         deploy adapters: [tomcat9(credentialsId: 'Tomcat', path: '', url: 'http://18.216.24.194:8888')], contextPath: 'Favbank', war: '**/*.war'
   }}
 }
 }
