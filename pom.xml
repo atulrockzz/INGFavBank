@@ -84,10 +84,10 @@
 
 	</dependencies>
 <distributionManagement>
-  <snapshotRepository>
+  <repository>
     <id>nexus</id>
     <url>http://3.6.235.13:8081/nexus/content/repositories/snapshots</url>
-  </snapshotRepository>
+  </repository>
 </distributionManagement>
 
 	<build>
